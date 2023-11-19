@@ -16,9 +16,10 @@
 - Or selete project:
    File -> Open-> QLHoatDongSinhVien
 ```
-3. Create database:
-   - Run script in **"DatabaseScript.sql"** with MySQL WordBench or ...
-4. Config in application properties:
+3. Create database: _You can use WorKBench or any tool to run the script._
+   - Create new database (Suggested name: quanlyhoatdong )
+   - Choose database and run script in file **"DatabaseScript.sql"**
+4. Config in **application.properties**:
 ```
 Config:
   spring.datasource.url=jdbc:mysql://localhost:<your host>/<your database name>
