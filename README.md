@@ -11,10 +11,10 @@
 2. Selete project:
 ```
 - Move to root project:
-   cd/QLHoatDongSinhVien
+   cd/QuanLyHoatDong
 
 - Or selete project:
-   File -> Open-> QLHoatDongSinhVien
+   File -> Open-> QuanLyHoatDong
 ```
 3. Create database: _You can use WorKBench or any tool to run the script._
    - Create new database (Suggested name: quanlyhoatdong )
