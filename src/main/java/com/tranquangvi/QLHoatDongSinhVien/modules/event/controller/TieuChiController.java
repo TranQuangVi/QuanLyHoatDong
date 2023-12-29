@@ -24,18 +24,45 @@ public class TieuChiController {
     }
 
     @PostMapping()
-    public ResponseEntity<TieuChiEntity> insert(String maTieuChi, String tenTieuChi){
-        TieuChiEntity tieuChi = new TieuChiEntity();
-        tieuChi.setMaTieuChi(maTieuChi);
-        tieuChi.setTenTieuChi(tenTieuChi);
-        tieuChiService.save(tieuChi);
-        return ResponseEntity.ok().body(tieuChi);
+    public ResponseEntity insert(@RequestBody TieuChiEntity tieuChi){
+        try{
+
+            tieuChiService.save(tieuChi);
+            return ResponseEntity.ok().body(tieuChi);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e);
+
+        }
+
     }
 
     @GetMapping("/getById")
     public ResponseEntity<TieuChiEntity> getById(String id){
         TieuChiEntity tieuChi = tieuChiService.getById(id);
         return ResponseEntity.ok().body(tieuChi);
+    }
+@PutMapping("/{maTieuChi}")
+public ResponseEntity putTieuChi(@PathVariable("maTieuChi") String maTieuChi, @RequestBody TieuChiEntity tieuChi){
+    try{
+        tieuChiService.edit(maTieuChi,tieuChi);
+        return ResponseEntity.ok().build();
+    }
+    catch (Exception e){
+        return ResponseEntity.badRequest().body(e);
+
+    }
+}
+    @DeleteMapping("/{maTieuChi}")
+    public ResponseEntity delete(@PathVariable("maTieuChi") String maTieuChi){
+        try{
+            tieuChiService.deleteById(maTieuChi);
+            return ResponseEntity.ok().build();
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e);
+
+        }
     }
 
 }

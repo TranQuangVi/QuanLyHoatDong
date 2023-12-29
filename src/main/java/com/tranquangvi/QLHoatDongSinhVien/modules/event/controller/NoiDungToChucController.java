@@ -15,6 +15,7 @@ public class NoiDungToChucController {
     @Autowired
     private NoiDungToChucService noiDungToChucService;
 
+
     //GetAll
     //@GetMapping
     public ResponseEntity<List<NoiDungToChucDto>> getAll(){
@@ -28,6 +29,7 @@ public class NoiDungToChucController {
         List<NoiDungToChucDto> result = noiDungToChucService.getByMaHoatDong(maHoatDong);
         return ResponseEntity.ok(result);
     }
+
     //GetById
     //Post
     @PostMapping

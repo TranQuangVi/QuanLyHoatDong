@@ -29,8 +29,9 @@ public class LoaiHoatDongService {
 
     public void update(LoaiHoatDongEntity loaiHoatDong, String id) {
         LoaiHoatDongEntity entity = getById(id);
-        BeanUtils.copyProperties(loaiHoatDong,entity);
-        loaiHoatDongRepository.save(entity);
+        if(entity==null)
+            throw new RuntimeException("Loại hoạt động không tồn tại!");
+        loaiHoatDongRepository.updateLoai(id,loaiHoatDong.getMaLoaiHoatDong(), loaiHoatDong.getTenLoaiHoatDong());
     }
 
     public Page<LoaiHoatDongEntity> getAll(Pageable pageable){

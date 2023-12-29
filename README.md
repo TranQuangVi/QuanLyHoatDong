@@ -33,6 +33,9 @@ Example:
 ```
 5. Build project.
 6. Run and use swagger Api document.
+7. Account Admin default:
+   - maSo: 11111111
+   - maKhau: 11111111
 ```
   http://localhost:8080/swagger-ui/index.html#
 ```

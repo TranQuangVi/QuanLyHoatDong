@@ -1,6 +1,8 @@
 package com.tranquangvi.QLHoatDongSinhVien.modules.user.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -11,10 +13,12 @@ import java.sql.Date;
 public class TaiKhoanDto {
     public String maSo;
     public String hoTen;
-    public Boolean gioiTinh;
+    public String gioiTinh;
+//    @DateTimeFormat(pattern = "dd-MM-yyyy")
+//    @JsonFormat(pattern = "dd-MM-yyyy")
     public Date ngaySinh;
     public String email;
-    public Character sdt;
+    public String sdt;
     public String diaChi;
     public String hinh;
 
@@ -37,11 +41,11 @@ public class TaiKhoanDto {
         this.hoTen = hoTen;
     }
 
-    public Boolean getGioiTinh() {
+    public String getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(Boolean gioiTinh) {
+    public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
@@ -61,11 +65,11 @@ public class TaiKhoanDto {
         this.email = email;
     }
 
-    public Character getSdt() {
+    public String getSdt() {
         return sdt;
     }
 
-    public void setSdt(Character sdt) {
+    public void setSdt(String sdt) {
         this.sdt = sdt;
     }
 
@@ -85,7 +89,7 @@ public class TaiKhoanDto {
         this.hinh = hinh;
     }
 
-    public TaiKhoanDto(String maSo, String hoTen, Boolean gioiTinh, Date ngaySinh, String email, Character sdt, String diaChi, String hinh) {
+    public TaiKhoanDto(String maSo, String hoTen, String gioiTinh, Date ngaySinh, String email, String sdt, String diaChi, String hinh) {
         this.maSo = maSo;
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;

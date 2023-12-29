@@ -1,8 +1,10 @@
 package com.tranquangvi.QLHoatDongSinhVien.modules.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
 import java.util.HashSet;
@@ -24,17 +26,18 @@ public class TaiKhoanEntity {
     private String hoTen;
 
     @Column( name = "gioitinh")
-    private Boolean gioiTinh;
+    private String gioiTinh;
 
     @Column( name = "ngaysinh")
-   // @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date ngaySinh;
 
     @Column( name = "email")
     private String email;
 
     @Column( name = "sdt")
-    private Character sdt;
+    private String sdt;
 
     @Column( name = "diachi")
     private String diaChi;
@@ -74,11 +77,11 @@ public class TaiKhoanEntity {
         this.hoTen = hoTen;
     }
 
-    public Boolean getGioiTinh() {
+    public String getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(Boolean gioiTinh) {
+    public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
@@ -98,11 +101,11 @@ public class TaiKhoanEntity {
         this.email = email;
     }
 
-    public Character getSdt() {
+    public String getSdt() {
         return sdt;
     }
 
-    public void setSdt(Character sdt) {
+    public void setSdt(String sdt) {
         this.sdt = sdt;
     }
 
@@ -125,7 +128,7 @@ public class TaiKhoanEntity {
     public TaiKhoanEntity() {
     }
 
-    public TaiKhoanEntity(String maSo, String matKhau, String hoTen, Boolean gioiTinh, Date ngaySinh, String email, Character sdt, String diaChi, String hinh) {
+    public TaiKhoanEntity(String maSo, String matKhau, String hoTen, String gioiTinh, Date ngaySinh, String email, String sdt, String diaChi, String hinh) {
         this.maSo = maSo;
         this.matKhau = matKhau;
         this.hoTen = hoTen;

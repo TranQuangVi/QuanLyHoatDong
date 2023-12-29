@@ -21,11 +21,11 @@ public class GetAllHoatDongDto {
     private String tenTieuChi;
     @Size(max = 255)
     private String tenHoatDong;
-    @DateTimeFormat(pattern = "HH:mm dd-MM-yyy")
-    @JsonFormat(pattern = "HH:mm dd-MM-yyy")
+    @DateTimeFormat(pattern = "HH:mm dd-MM-yyyy")
+    @JsonFormat(pattern = "HH:mm dd-MM-yyyy")
     private LocalDateTime thoiGianBatDau;
-    @DateTimeFormat(pattern = "HH:mm dd-MM-yyy")
-    @JsonFormat(pattern = "HH:mm dd-MM-yyy")
+    @DateTimeFormat(pattern = "HH:mm dd-MM-yyyy")
+    @JsonFormat(pattern = "HH:mm dd-MM-yyyy")
     private LocalDateTime thoiGianKetThuc;
     @Size(max = 255)
     private String diaChi;
@@ -36,10 +36,10 @@ public class GetAllHoatDongDto {
     private String yeuCau;
     @Size(max = 255)
     private String hinh;
-    private Boolean trangThai;
+    private String trangThai;
     @Size(max = 255)
     private String moTa;
-    public GetAllHoatDongDto(String maHoatDong, String tenLoaiHoatDong, String tenTieuChi, String tenHoatDong, LocalDateTime thoiGianBatDau, LocalDateTime thoiGianKetThuc, String diaChi, Integer soLuongSinhVien,Integer soLuongDangKy, String yeuCau, String hinh, Boolean trangThai, String moTa,String tenTaiKhoan) {
+    public GetAllHoatDongDto(String maHoatDong, String tenLoaiHoatDong, String tenTieuChi, String tenHoatDong, LocalDateTime thoiGianBatDau, LocalDateTime thoiGianKetThuc, String diaChi, Integer soLuongSinhVien,Integer soLuongDangKy, String yeuCau, String hinh, String trangThai, String moTa,String tenTaiKhoan) {
         this.maHoatDong = maHoatDong;
         this.tenLoaiHoatDong = tenLoaiHoatDong;
         this.tenTieuChi = tenTieuChi;
@@ -123,11 +123,11 @@ public class GetAllHoatDongDto {
         this.hinh = hinh;
     }
 
-    public Boolean getTrangThai() {
+    public String getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(Boolean trangThai) {
+    public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
 

@@ -11,7 +11,6 @@ import java.util.List;
 
 @Repository
 public interface DSSinhVienDangKyRepository extends JpaRepository<DSSinhVienDangKyEntity, DSSinhVienDangKyKey> {
-
     @Query("SELECT e FROM DSSinhVienDangKyEntity e WHERE e.hoatDong.maHoatDong = ?1")
     List<DSSinhVienDangKyEntity> findByMaHoatDong(String maHoatDong);
 }

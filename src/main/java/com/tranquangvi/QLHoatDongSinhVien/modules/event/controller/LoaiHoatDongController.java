@@ -27,27 +27,49 @@ public class LoaiHoatDongController {
         return ResponseEntity.ok().body(page);
     }
     @PostMapping
-    public ResponseEntity<Void> save( LoaihoatdongDTO dto) {
-        loaiHoatDongService.save(loaiHoatDongMapper.toEntity(dto));
-        return ResponseEntity.ok().build();
+    public ResponseEntity save(@RequestBody LoaihoatdongDTO dto) {
+        try{
+            loaiHoatDongService.save(loaiHoatDongMapper.toEntity(dto));
+            return ResponseEntity.ok().build();
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e);
+
+        }
+
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<LoaiHoatDongEntity> findById(@PathVariable("id") String id) {
+
         LoaiHoatDongEntity loaiHoatDong = loaiHoatDongService.getById(id);
         return ResponseEntity.ok(loaiHoatDong);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") String id) {
-        loaiHoatDongService.deleteById(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity delete(@PathVariable("id") String id) {
+        try{
+            loaiHoatDongService.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e);
+
+        }
+
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@RequestBody LoaihoatdongDTO dto, @PathVariable("id") String id) {
-        loaiHoatDongService.update(loaiHoatDongMapper.toEntity(dto), id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity update(@RequestBody LoaihoatdongDTO dto, @PathVariable("id") String id) {
+        try{
+            loaiHoatDongService.update(loaiHoatDongMapper.toEntity(dto), id);
+            return ResponseEntity.ok().build();
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e);
+
+        }
+
     }
 
 

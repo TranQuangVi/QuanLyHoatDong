@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -61,6 +62,7 @@ public class SecurityConfig {
             AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
+
     private static final String[] WHITE_LIST_URL = {"/api/v1/auth/**",
             "/v2/api-docs",
             "/v3/api-docs",
@@ -72,22 +74,56 @@ public class SecurityConfig {
             "/swagger-ui/**",
             "/webjars/**",
             "/swagger-ui.html",
-            "/**"
+            "/tai-khoan/sign-in/**", "/tai-khoan/sign-in",
+        //    "/**"
     };
+    private static final String[] SINHVIEN_REQUEST_URL = {
+            "/hoat-dong/dang-ky", "/hoat-dong/dang-ky/**",
+
+    };
+    private static final String[] GIANGVIEN_REQUEST_URL = {
+            "/phieu-phe-duyet",
+            "/tieu-chi","/tieu-chi/**",
+            "/hoat-dong/noi-dung/chi-tiet/",
+         //   "/hoat-dong/noi-dung",
+            "/hoat-dong/update","/hoat-dong/update/**",
+            "/hoat-dong/cap-nhat-trang-thai",
+    };
+
+    private static final String[] ADMIN_REQUEST = {
+            "/phieu-phe-duyet",
+            "/phieu-phe-duyet/duyet-phieu","/phieu-phe-duyet/duyet-phieu/**",
+            "/tieu-chi","/tieu-chi/**",
+            "/hoat-dong/noi-dung/chi-tiet/",
+          //  "/hoat-dong/noi-dung",
+            "/hoat-dong/update","/hoat-dong/update/**",
+            "/hoat-dong/cap-nhat-trang-thai",
+    };
+
+
+
+
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/**")
+                .requestMatchers(WHITE_LIST_URL)
+
                 .permitAll()
-//                .requestMatchers("/hoat-dong")
-//                .hasAnyAuthority("GIANGVIEN")
-//                .requestMatchers("/tai-khoan/sign-in")
-//                .permitAll()
+                .requestMatchers(SINHVIEN_REQUEST_URL)
+                .hasAnyAuthority("SINHVIEN")
+
+                .requestMatchers(GIANGVIEN_REQUEST_URL)
+                .hasAnyAuthority("GIANGVIEN","ADMIN")
+
+                .requestMatchers( ADMIN_REQUEST)
+                .hasAnyAuthority("ADMIN")
+
                 .anyRequest()
                 .authenticated()
 
         );
+
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authenticationProvider(authenticationProvider());

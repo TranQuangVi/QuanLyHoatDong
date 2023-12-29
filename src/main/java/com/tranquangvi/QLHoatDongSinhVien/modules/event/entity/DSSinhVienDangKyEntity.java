@@ -3,6 +3,7 @@ package com.tranquangvi.QLHoatDongSinhVien.modules.event.entity;
 import com.tranquangvi.QLHoatDongSinhVien.modules.event.entity.compositeKey.DSSinhVienDangKyKey;
 import com.tranquangvi.QLHoatDongSinhVien.modules.user.entity.TaiKhoanEntity;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -19,9 +20,10 @@ public class DSSinhVienDangKyEntity {
     @MapsId("maso")
     @JoinColumn(name = "maso")
     private TaiKhoanEntity taiKhoan;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "ngaydangky")
     private Date ngayDangKy;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "giodiemdanh")
     private Date gioDiemDanh;
 

@@ -41,8 +41,8 @@ public class HoatDongEntity {
     @Column(name = "hinh")
     private String hinh;
 
-    @Column(name = "trangthai", columnDefinition = "BOOLEAN DEFAULT false")
-    private Boolean trangThai;
+    @Column(name = "trangthai")
+    private String trangThai;
 
     @Column(name = "mota")
     private String moTa;
@@ -60,7 +60,7 @@ public class HoatDongEntity {
 //    @OneToMany(mappedBy = "hoatDong")
 //    Set<DSSinhVienDangKyEntity> sinhVienDangKys;
 
-    public HoatDongEntity(String maHoatDong, String tenHoatDong, LocalDateTime thoiGianBatDau, LocalDateTime thoiGianKetThuc, String diaChi, Integer soLuongSinhVien, String yeuCau, String hinh, Boolean trangThai, String moTa, TieuChiEntity tieuChi, LoaiHoatDongEntity loaiHoatDong, TaiKhoanEntity taiKhoan) {
+    public HoatDongEntity(String maHoatDong, String tenHoatDong, LocalDateTime thoiGianBatDau, LocalDateTime thoiGianKetThuc, String diaChi, Integer soLuongSinhVien, String yeuCau, String hinh, String trangThai, String moTa, TieuChiEntity tieuChi, LoaiHoatDongEntity loaiHoatDong, TaiKhoanEntity taiKhoan) {
         this.maHoatDong = maHoatDong;
         this.tenHoatDong = tenHoatDong;
         this.thoiGianBatDau = thoiGianBatDau;
@@ -151,11 +151,11 @@ public class HoatDongEntity {
         this.hinh = hinh;
     }
 
-    public Boolean getTrangThai() {
+    public String getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(Boolean trangThai) {
+    public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
 

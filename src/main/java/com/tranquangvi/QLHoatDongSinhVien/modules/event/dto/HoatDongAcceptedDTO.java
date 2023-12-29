@@ -1,43 +1,32 @@
 package com.tranquangvi.QLHoatDongSinhVien.modules.event.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.tranquangvi.QLHoatDongSinhVien.modules.event.entity.LoaiHoatDongEntity;
-import com.tranquangvi.QLHoatDongSinhVien.modules.event.entity.TieuChiEntity;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 
-@Getter
-@Setter
-public class HoatDongDto {
-    @Size(max = 255)
+public class HoatDongAcceptedDTO {
     private String maHoatDong;
-    @Size(max = 255)
     private String tenHoatDong;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "HH:mm dd-MM-yyyy")
+    @JsonFormat(pattern = "HH:mm dd-MM-yyyy")
     private LocalDateTime thoiGianBatDau;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "HH:mm dd-MM-yyyy")
+    @JsonFormat(pattern = "HH:mm dd-MM-yyyy")
     private LocalDateTime thoiGianKetThuc;
-    @Size(max = 255)
     private String diaChi;
-    @Max(Integer.MAX_VALUE)
     private Integer soLuongSinhVien;
-    @Size(max = 255)
     private String yeuCau;
-    @Size(max = 255)
     private String hinh;
     private String trangThai;
-    @Size(max = 255)
     private String moTa;
-    private String maTieuChi;
-    private String maLoaiHoatDong;
+    private String tenTieuChi;
+    private String tenLoaiHoatDong;
+    private List<GetAllNoiDungToChucDto> noiDungToChuc;
+
+    public HoatDongAcceptedDTO() {
+    }
 
     public String getMaHoatDong() {
         return maHoatDong;
@@ -119,26 +108,31 @@ public class HoatDongDto {
         this.moTa = moTa;
     }
 
-    public String getMaTieuChi() {
-        return maTieuChi;
+    public String getTenTieuChi() {
+        return tenTieuChi;
     }
 
-    public void setMaTieuChi(String maTieuChi) {
-        this.maTieuChi = maTieuChi;
+    public void setTenTieuChi(String tenTieuChi) {
+        this.tenTieuChi = tenTieuChi;
     }
 
-    public String getMaLoaiHoatDong() {
-        return maLoaiHoatDong;
+    public String getTenLoaiHoatDong() {
+        return tenLoaiHoatDong;
     }
 
-    public void setMaLoaiHoatDong(String maLoaiHoatDong) {
-        this.maLoaiHoatDong = maLoaiHoatDong;
+    public void setTenLoaiHoatDong(String tenLoaiHoatDong) {
+        this.tenLoaiHoatDong = tenLoaiHoatDong;
     }
 
-    public HoatDongDto() {
+    public List<GetAllNoiDungToChucDto> getNoiDungToChuc() {
+        return noiDungToChuc;
     }
 
-    public HoatDongDto(String maHoatDong, String tenHoatDong, LocalDateTime thoiGianBatDau, LocalDateTime thoiGianKetThuc, String diaChi, Integer soLuongSinhVien, String yeuCau, String hinh, String trangThai, String moTa, String maTieuChi, String maLoaiHoatDong) {
+    public void setNoiDungToChuc(List<GetAllNoiDungToChucDto> noiDungToChuc) {
+        this.noiDungToChuc = noiDungToChuc;
+    }
+
+    public HoatDongAcceptedDTO(String maHoatDong, String tenHoatDong, LocalDateTime thoiGianBatDau, LocalDateTime thoiGianKetThuc, String diaChi, Integer soLuongSinhVien, String yeuCau, String hinh, String trangThai, String moTa, String tenTieuChi, String tenLoaiHoatDong, List<GetAllNoiDungToChucDto> noiDungToChuc) {
         this.maHoatDong = maHoatDong;
         this.tenHoatDong = tenHoatDong;
         this.thoiGianBatDau = thoiGianBatDau;
@@ -149,7 +143,8 @@ public class HoatDongDto {
         this.hinh = hinh;
         this.trangThai = trangThai;
         this.moTa = moTa;
-        this.maTieuChi = maTieuChi;
-        this.maLoaiHoatDong = maLoaiHoatDong;
+        this.tenTieuChi = tenTieuChi;
+        this.tenLoaiHoatDong = tenLoaiHoatDong;
+        this.noiDungToChuc = noiDungToChuc;
     }
 }

@@ -1,5 +1,6 @@
 package com.tranquangvi.QLHoatDongSinhVien.modules.user.services;
 
+import com.tranquangvi.QLHoatDongSinhVien.modules.event.entity.TieuChiEntity;
 import com.tranquangvi.QLHoatDongSinhVien.modules.user.entity.ChucVuEntity;
 import com.tranquangvi.QLHoatDongSinhVien.modules.user.repositories.ChucVuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,28 @@ public class ChucVuService {
         else
             chucVuRepository.save(chucVu);
 
+    }
+
+
+    public void edit(String maChucVu, ChucVuEntity chucVu){
+        try {
+            ChucVuEntity entity = findById(maChucVu);
+            if(entity!=null){
+                chucVuRepository.save(chucVu);
+            }
+            else
+                throw new RuntimeException("Không tìm thấy chức vụ!");
+        }catch (Exception e){
+            throw new RuntimeException("Lỗi khi xóa: "+ e.getMessage());
+        }
+    }
+    public void deleteById(String maChucVu){
+        try {
+            chucVuRepository.deleteById(maChucVu);
+
+        }catch (Exception e){
+            throw new RuntimeException("Chức vụ đang được sử dụng. Không thể xóa!");
+        }
     }
 
 }
