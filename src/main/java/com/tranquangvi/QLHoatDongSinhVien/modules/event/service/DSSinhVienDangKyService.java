@@ -60,6 +60,17 @@ public class DSSinhVienDangKyService {
         dsSinhVienDangKyRepository.save(dsSinhVienDangKy);
     }
 
+    public void huyDangKyHoatDong(String maHoatDong, String token) {
+        String maSo = jwtService.extractUser(token);
+        DSSinhVienDangKyKey key = new DSSinhVienDangKyKey(maHoatDong, maSo);
+        if (dsSinhVienDangKyRepository.findById(key).isPresent()) {
+            dsSinhVienDangKyRepository.deleteById(key);
+        }
+        else
+            throw new RuntimeException("Thông tin đăng ký chưa tồn tại!");
+
+    }
+
     public String diemDanh(String maHoatDong, String maSo){
         //String maSo = jwtService.extractUser(dto.getJwtToken());
         DSSinhVienDangKyKey key = new DSSinhVienDangKyKey(maHoatDong, maSo);
@@ -82,4 +93,6 @@ public class DSSinhVienDangKyService {
         }
         return dtoList;
     }
+
+
 }

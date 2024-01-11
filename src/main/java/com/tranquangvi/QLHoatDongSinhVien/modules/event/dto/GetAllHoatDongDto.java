@@ -17,6 +17,7 @@ public class GetAllHoatDongDto {
     private String tenLoaiHoatDong;
     @Size(max = 255)
     private String tenTaiKhoan;
+    private String hinhTaiKhoan;
     @Size(max = 255)
     private String tenTieuChi;
     @Size(max = 255)
@@ -39,24 +40,43 @@ public class GetAllHoatDongDto {
     private String trangThai;
     @Size(max = 255)
     private String moTa;
-    public GetAllHoatDongDto(String maHoatDong, String tenLoaiHoatDong, String tenTieuChi, String tenHoatDong, LocalDateTime thoiGianBatDau, LocalDateTime thoiGianKetThuc, String diaChi, Integer soLuongSinhVien,Integer soLuongDangKy, String yeuCau, String hinh, String trangThai, String moTa,String tenTaiKhoan) {
+    private Boolean dangKy;
+    public GetAllHoatDongDto(String maHoatDong, String tenLoaiHoatDong, String tenTaiKhoan, String hinhTaiKhoan, String tenTieuChi, String tenHoatDong, LocalDateTime thoiGianBatDau, LocalDateTime thoiGianKetThuc, String diaChi, Integer soLuongSinhVien, Integer soLuongDangKy, String yeuCau, String hinh, String trangThai, String moTa, Boolean dangKy) {
         this.maHoatDong = maHoatDong;
         this.tenLoaiHoatDong = tenLoaiHoatDong;
+        this.tenTaiKhoan = tenTaiKhoan;
+        this.hinhTaiKhoan = hinhTaiKhoan;
         this.tenTieuChi = tenTieuChi;
         this.tenHoatDong = tenHoatDong;
         this.thoiGianBatDau = thoiGianBatDau;
         this.thoiGianKetThuc = thoiGianKetThuc;
         this.diaChi = diaChi;
         this.soLuongSinhVien = soLuongSinhVien;
-        this.soLuongDangKy =  soLuongDangKy;
+        this.soLuongDangKy = soLuongDangKy;
         this.yeuCau = yeuCau;
         this.hinh = hinh;
         this.trangThai = trangThai;
         this.moTa = moTa;
-        this.tenTaiKhoan = tenTaiKhoan;
+        this.dangKy = dangKy;
     }
 
     public GetAllHoatDongDto() {
+    }
+
+    public String getHinhTaiKhoan() {
+        return hinhTaiKhoan;
+    }
+
+    public void setHinhTaiKhoan(String hinhTaiKhoan) {
+        this.hinhTaiKhoan = hinhTaiKhoan;
+    }
+
+    public Boolean getDangKy() {
+        return dangKy;
+    }
+
+    public void setDangKy(Boolean dangKy) {
+        this.dangKy = dangKy;
     }
 
     public Integer getSoLuongDangKy() {

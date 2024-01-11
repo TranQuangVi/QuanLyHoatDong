@@ -75,6 +75,7 @@ public class SecurityConfig {
             "/webjars/**",
             "/swagger-ui.html",
             "/tai-khoan/sign-in/**", "/tai-khoan/sign-in",
+            "/hoat-dong/dang-ky", "/hoat-dong/dang-ky/**"
         //    "/**"
     };
     private static final String[] SINHVIEN_REQUEST_URL = {

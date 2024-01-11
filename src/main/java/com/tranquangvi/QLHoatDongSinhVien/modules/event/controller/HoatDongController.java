@@ -234,6 +234,21 @@ public class HoatDongController {
 
     }
 
+    @DeleteMapping("/huy-dang-ky/{maHoatDong}")
+    public ResponseEntity deleteSinhVienDangKy(@RequestHeader HttpHeaders headers, @PathVariable("maHoatDong") String maHoatDong) {
+        try {
+            final String authHeader = headers.getFirst("Authorization");
+            String token = authHeader.substring(7);
+            dsSinhVienDangKyService.huyDangKyHoatDong(maHoatDong, token);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+    }
+
     @PostMapping("/diem-danh/{maHoatDong}")
     public ResponseEntity postDiemDanh(@PathVariable("maHoatDong") String maHoatDong, String maSo) {
         try {
@@ -248,8 +263,10 @@ public class HoatDongController {
     }
 
     @GetMapping("/trang-thai")
-    public ResponseEntity<List<GetAllHoatDongDto>> getByTrangThai(String trangThai) {
-        List<GetAllHoatDongDto> list = hoatDongService.getByTrangThai(trangThai);
+    public ResponseEntity<List<GetAllHoatDongDto>> getByTrangThai(String trangThai,@RequestHeader HttpHeaders headers) {
+        final String authHeader = headers.getFirst("Authorization");
+        String token = authHeader.substring(7);
+        List<GetAllHoatDongDto> list = hoatDongService.getByTrangThai(trangThai,token);
         return ResponseEntity.ok(list);
     }
 

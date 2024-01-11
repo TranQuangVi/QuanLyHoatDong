@@ -2,6 +2,7 @@ package com.tranquangvi.QLHoatDongSinhVien.modules.event.service;
 
 import com.tranquangvi.QLHoatDongSinhVien.modules.event.dto.*;
 import com.tranquangvi.QLHoatDongSinhVien.modules.event.entity.HoatDongEntity;
+import com.tranquangvi.QLHoatDongSinhVien.modules.event.entity.compositeKey.DSSinhVienDangKyKey;
 import com.tranquangvi.QLHoatDongSinhVien.modules.event.mapper.*;
 import com.tranquangvi.QLHoatDongSinhVien.modules.event.repository.DSSinhVienDangKyRepository;
 import com.tranquangvi.QLHoatDongSinhVien.modules.event.repository.HoatDongRepository;
@@ -46,6 +47,7 @@ public class HoatDongService {
     private DSSinhVienDangKyRepository dsSinhVienDangKyRepository;
     @Autowired
     private JwtService jwtService;
+
 
     public Page<GetAllHoatDongDto> getAll(Pageable pageable) {
         Page<HoatDongEntity> pageContent = repository.findAll(pageable);
@@ -115,7 +117,7 @@ public class HoatDongService {
 
     public List<GetAllHoatDongDto> findByThang(int month, int year, String jwt) {
         //List<GetAllHoatDongDto> all = findByTaiKhoan(jwt);
-        List<GetAllHoatDongDto> all = getByTrangThai("Đã hoàn thành");
+        List<GetAllHoatDongDto> all = getByTrangThai("Đã hoàn thành",null);
         List<GetAllHoatDongDto> res = new ArrayList<>();
         for (var item : all) {
             if (item.getThoiGianBatDau().getMonth().getValue() == month && item.getThoiGianBatDau().getYear() == year) {
@@ -160,7 +162,8 @@ public class HoatDongService {
         repository.save(entity);
     }
 
-    public List<GetAllHoatDongDto> getByTrangThai(String trangThai) {
+    public List<GetAllHoatDongDto> getByTrangThai(String trangThai, String token) {
+        String maSo = jwtService.extractUser(token);
         List<HoatDongEntity> listE = repository.findByTrangThai(trangThai);
         List<GetAllHoatDongDto> listDto = new ArrayList<>();
         for (HoatDongEntity item : listE) {
@@ -168,6 +171,8 @@ public class HoatDongService {
             dtoContent.setTenTieuChi(item.getTieuChi().getTenTieuChi());
             dtoContent.setTenLoaiHoatDong(item.getLoaiHoatDong().getTenLoaiHoatDong());
             dtoContent.setTenTaiKhoan(item.getTaiKhoan().getHoTen());
+            dtoContent.setHinhTaiKhoan(item.getTaiKhoan().getHinh());
+            dtoContent.setDangKy(chekDangKy(maSo, item.getMaHoatDong()));
             try {
                 dtoContent.setSoLuongDangKy(dsSinhVienDangKyRepository.findByMaHoatDong(item.getMaHoatDong()).size());
             } catch (Exception e) {
@@ -177,6 +182,15 @@ public class HoatDongService {
         }
         return listDto;
 
+    }
+
+    public Boolean chekDangKy(String maSo, String maHoatDong){
+        DSSinhVienDangKyKey key = new DSSinhVienDangKyKey(maHoatDong, maSo);
+        if (dsSinhVienDangKyRepository.findById(key).isPresent()) {
+            return true;
+        }
+        else
+            return false;
     }
 
     public List<GetAllHoatDongDto> search(SearchDto dto) {

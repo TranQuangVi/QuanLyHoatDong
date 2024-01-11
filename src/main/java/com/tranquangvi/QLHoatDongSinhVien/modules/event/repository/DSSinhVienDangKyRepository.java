@@ -13,4 +13,7 @@ import java.util.List;
 public interface DSSinhVienDangKyRepository extends JpaRepository<DSSinhVienDangKyEntity, DSSinhVienDangKyKey> {
     @Query("SELECT e FROM DSSinhVienDangKyEntity e WHERE e.hoatDong.maHoatDong = ?1")
     List<DSSinhVienDangKyEntity> findByMaHoatDong(String maHoatDong);
+
+//    @Query("SELECT e FROM DSSinhVienDangKyEntity e WHERE e.hoatDong.maHoatDong = ?1")
+//    DSSinhVienDangKyEntity chekDangKy(String maHoatDong,String maSo);
 }
