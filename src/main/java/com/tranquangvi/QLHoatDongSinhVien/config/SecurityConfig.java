@@ -121,6 +121,7 @@ public class SecurityConfig {
                 .hasAnyAuthority("ADMIN")
 
                 .anyRequest()
+               //         .permitAll()
                 .authenticated()
 
         );

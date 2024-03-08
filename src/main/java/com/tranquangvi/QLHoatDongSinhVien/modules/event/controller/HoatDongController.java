@@ -283,6 +283,7 @@ public class HoatDongController {
         }
     }
     @GetMapping("/sinh-vien-dang-ky")
+
     public ResponseEntity getHoatDongSVDK(@RequestHeader HttpHeaders headers) {
         try {
             final String authHeader = headers.getFirst("Authorization");
