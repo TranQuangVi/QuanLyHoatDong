@@ -1,11 +1,11 @@
 package com.tranquangvi.QLHoatDongSinhVien.modules.user.dto;
 
-import lombok.Builder;
+//import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+//@Builder
 @NoArgsConstructor
 public class AuthResponse {
     private String accessToken;
